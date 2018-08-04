@@ -24,4 +24,6 @@ copy build-templates 文件夹 到你自己的项目根目录
     ]
 ```
 
+**注意这里的目录结构，同时要在对应的文件目录下，增加一个空的 game.js**
+
 这里还兼容了 loading [官方教程](http://forum.cocos.com/t/topic/62296/34) 为了加载过程中，不至于黑屏。
