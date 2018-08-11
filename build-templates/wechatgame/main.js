@@ -152,21 +152,25 @@ window.boot = function() {
         const subpack = json.subpackages[index];
         subs.push(loadSubpackage(subpack.name));
       }
-      Promise.all(subs).then(() => {
-        cc.director.loadScene(launchScene, null, function() {
-          if (cc.sys.isBrowser) {
-            // show canvas
-            var canvas = document.getElementById("GameCanvas");
-            canvas.style.visibility = "";
-            var div = document.getElementById("GameDiv");
-            if (div) {
-              div.style.backgroundImage = "";
+      Promise.all(subs)
+        .catch(error => {
+          console.log("加载子包失败，直接启动", error);
+        })
+        .then(() => {
+          cc.director.loadScene(launchScene, null, function() {
+            if (cc.sys.isBrowser) {
+              // show canvas
+              var canvas = document.getElementById("GameCanvas");
+              canvas.style.visibility = "";
+              var div = document.getElementById("GameDiv");
+              if (div) {
+                div.style.backgroundImage = "";
+              }
             }
-          }
-          cc.loader.onProgress = null;
-          console.log("Success to load scene: " + launchScene);
+            cc.loader.onProgress = null;
+            console.log("Success to load scene: " + launchScene);
+          });
         });
-      });
     });
   };
 
