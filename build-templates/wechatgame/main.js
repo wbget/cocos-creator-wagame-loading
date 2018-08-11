@@ -119,8 +119,6 @@ window.boot = function() {
     cc.loader.load("ga" + "me.json", (err, json) => {
       const loadSubpackage = name =>
         new Promise((resolve, reject) => {
-          // load scene
-          cc.director.preloadScene(launchScene);
 
           const loadTask = wx.loadSubpackage({
             name, // name 可以填 name 或者 root
