@@ -115,13 +115,13 @@ window.boot = function() {
 
     var launchScene = settings.launchScene;
 
-    // load scene
-    cc.director.preloadScene(launchScene);
-
     // load subpackages
-    cc.loader.load("game.json", (err, json) => {
+    cc.loader.load("ga" + "me.json", (err, json) => {
       const loadSubpackage = name =>
         new Promise((resolve, reject) => {
+          // load scene
+          cc.director.preloadScene(launchScene);
+
           const loadTask = wx.loadSubpackage({
             name, // name 可以填 name 或者 root
             success: function(res) {
